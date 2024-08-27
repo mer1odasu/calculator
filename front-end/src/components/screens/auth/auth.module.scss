@@ -5,6 +5,7 @@
 }
 
 body{
+	background: whitesmoke;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -12,13 +13,20 @@ body{
 }
 
 .wrapper{
+	box-shadow: inset;
 	width: 420px;
-	background: #dcdcdc;
+	background: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .1);
 	border: 2px solid rgba(255, 255, 255, .2);
 	backdrop-filter: blur(30px);
-	color: grey;
 	border-radius: 10px;
 	padding: 30px;
+}
+
+.title h1{
+	font-size: 36px;
+	text-align: center;
+	padding-bottom: 30px;
 }
 
 .wrapper h1 {
@@ -38,15 +46,14 @@ body{
 	height: 100%;
 	background: transparent;
 	outline: none;
-	border: 2px solid ;
-	border-radius: 40px;
+	border: 1px solid ;
+	border-radius: 10px;
 	font-size: 16px;
-	color: grey;
 	padding: 20px 45px 20px 20px;
 }
 
 .input_box input::placeholder{
-	color: grey;
+	color: black;
 }
 
 .input_box .icon{
@@ -65,12 +72,12 @@ body{
 }
 
 .remember_forgot label input {
-	accent-color: grey;
+	accent-color: black;
 	margin-right: 4px;
 }
 
 .remember_forgot a {
-	color: grey;
+	color: black;
 	text-decoration: none;
 }
 
@@ -82,15 +89,18 @@ body{
 .wrapper button{
 	width: 100%;
 	height: 45px;
-	background: grey;
 	border: none;
 	outline: none;
-	border-radius: 40px;
+	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, .1);
 	cursor: pointer;
 	font-size: 16px;
-	color: #333;
+	color: #fff;
 	font-weight: 700;
+}
+
+.button {
+	background: #2a9df4;
 }
 
 .wrapper .register_link {
