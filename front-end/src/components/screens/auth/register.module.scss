@@ -4,7 +4,7 @@
 	box-sizing: border-box;
 }
 
-.wrapper body{
+body{
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -12,28 +12,35 @@
 }
 
 .wrapper{
-	width: 420px;
+	width: 750px;
 	background: #dcdcdc;
 	border: 2px solid rgba(255, 255, 255, .2);
 	backdrop-filter: blur(30px);
 	color: grey;
 	border-radius: 10px;
-	padding: 30px;
+	padding: 40px 35px 55px;
 }
 
 .wrapper h1 {
-	font-size: 50;
+	font-size: 36px;
 	text-align: center;
+	margin-bottom: 20px;
 }
 
 .wrapper .input_box {
-	position: relative;
-	width: 100%;
-	height: 50px;
-	margin: 30px 0;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
-.input_box input {
+.input_box .input_field {
+	position: relative;
+	width: 48%;
+	height: 50%;
+	margin: 13px 0;
+}
+
+.input_box .input_field input {
 	width: 100%;
 	height: 100%;
 	background: transparent;
@@ -55,28 +62,6 @@
 	top: 50%;
 	transform: translateY(-50%);
 	font-size: 16px;
-}
-
-.wrapper .remember_forgot{
-	display: flex;
-	justify-content: space-between;
-	margin: -15px 0 15px;
-	font-size: 14.5px;
-}
-
-.remember_forgot label input {
-	accent-color: grey;
-	margin-right: 4px;
-}
-
-.remember_forgot a {
-	color: grey;
-	text-decoration: none;
-}
-
-
-.remember_forgot a:hover{
-	text-decoration: underline;
 }
 
 .wrapper button{
