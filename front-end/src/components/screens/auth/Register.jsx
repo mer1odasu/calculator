@@ -7,23 +7,35 @@ const Register = () => {
     return (
         <div className={styles.wrapper}>
             <form action="">
-							<h1>Войти</h1>
+							<h1>Зарегистрироваться</h1>
 							<div className={styles.input_box}>
-								<input type="text" placeholder="Имя пользователя" required/>
-								<FaUser className={styles.icon}/>
+								<div className={styles.input_field}>
+									<input type="text" placeholder="Логин" required/>
+								</div>
+								<div className={styles.input_field}>
+									<input type="email" placeholder="Email" required/>
+								</div>
 							</div>
 							<div className={styles.input_box}>
-								<input type="password" placeholder="Пароль" required/>
-								<FaLock className={styles.icon}/>
+								<div className={styles.input_field}>
+									<input type="password" placeholder="Пароль" required/>
+								</div>
+								<div className={styles.input_field}>
+									<input type="text" placeholder="Фамилия" required/>
+								</div>
 							</div>
-							<div className={styles.remember_forgot}>
-								<label><input type="checkbox"/>Запомниь меня</label>
-								<a href="#">Забыли пароль?</a>
+							<div className={styles.input_box}>
+								<div className={styles.input_field}>
+									<input type="text" placeholder="Имя" required/>
+								</div>
+								<div className={styles.input_field}>
+									<input type="text" placeholder="Отчество" required/>
+								</div>
 							</div>
-							<button type="submit">Войти</button>
 							<div className={styles.register_link}>
-								<p>У вас нет аккаунта? <a href="#">Зарегистрироваться</a></p>
+								<p>У вас есть аккаунт? <a href="#">Войти</a></p>
 							</div>
+							<button type="submit">Зарегистрироваться</button>
 						</form>
         </div>
     );
