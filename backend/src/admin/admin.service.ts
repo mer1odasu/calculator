@@ -1,19 +1,14 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma.service';
 import { User } from '@prisma/client';
-import { SignUpDto } from './dto/signUp.dto';
-import { AuthService } from 'src/auth/auth.service';
+import { PrismaService } from 'src/prisma.service';
+import { SignUpDto } from 'src/user/dto/signUp.dto';
 import * as bcrypt from 'bcrypt';
-import { SignInDto } from './dto/signIn.dto';
 
 @Injectable()
-export class UserService {
-  constructor(
-    private readonly prisma: PrismaService,
-    private readonly authService: AuthService,
-  ) {}
+export class AdminService {
+  constructor(private readonly prisma: PrismaService) {}
 
-  async signUp(dto: SignUpDto): Promise<{ user: User; token: string }> {
+  async createUserByAdmin(dto: SignUpDto): Promise<{ message }> {
     const existingUserWithThisLogin = await this.prisma.user.findUnique({
       where: {
         login: dto.login,
@@ -33,36 +28,25 @@ export class UserService {
     }
     const hashedPassword = await bcrypt.hash(dto.password, 10);
     const user = await this.prisma.user.create({
-      data: { ...dto, password: hashedPassword, isConfirmed: false },
+      data: { ...dto, password: hashedPassword, isConfirmed: true },
     });
-    const token = await this.authService.generateToken(user);
-    return { user: user, ...token };
+    return { message: 'User created' };
   }
 
-  async signIn(dto: SignInDto): Promise<{ user: User; token: string }> {
-    const curretUser = await this.prisma.user.findUnique({
+  async getAllUsers(): Promise<User[]> {
+    const users = await this.prisma.user.findMany({});
+    return users;
+  }
+
+  async updateUserinfo(id: number, dto: SignUpDto): Promise<{ message }> {
+    const existingUser = await this.prisma.user.findUnique({
       where: {
-        login: dto.login,
+        id: id,
       },
     });
-    if (!curretUser) {
-      throw new HttpException(
-        'User with this login not found',
-        HttpStatus.BAD_REQUEST,
-      );
+    if (!existingUser) {
+      throw new HttpException('user not found', HttpStatus.BAD_REQUEST);
     }
-    const isMatch = await bcrypt.compare(dto.password, curretUser.password);
-    if (!isMatch) {
-      throw new HttpException(
-        'invalid login or password',
-        HttpStatus.BAD_REQUEST,
-      );
-    }
-    const token = await this.authService.generateToken(curretUser);
-    return { user: curretUser, ...token };
-  }
-
-  async updateUserInfo(id: number, dto: SignUpDto): Promise<User> {
     const existingUserWithThisEmail = await this.prisma.user.findUnique({
       where: {
         email: dto.email,
@@ -80,10 +64,29 @@ export class UserService {
       throw new HttpException('login has be taken', HttpStatus.BAD_REQUEST);
     }
     const hashedPassword = await bcrypt.hash(dto.password, 10);
-    const user = await this.prisma.user.update({
+    const updatedUser = await this.prisma.user.update({
       where: { id: id },
-      data: { ...dto, password: hashedPassword },
+      data: {
+        ...dto,
+        password: hashedPassword,
+      },
     });
-    return user;
+    return { message: 'user updated' };
+  }
+
+  async confirmedUser(id: number, dto: SignUpDto): Promise<{ message }> {
+    const currentUser = await this.prisma.user.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    if (!currentUser) {
+      throw new HttpException('user not found', HttpStatus.BAD_REQUEST);
+    }
+    const confirmedUser = await this.prisma.user.update({
+      where: { id: id },
+      data: { ...dto },
+    });
+    return { message: 'user confirmed' };
   }
 }

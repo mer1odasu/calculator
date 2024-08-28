@@ -5,4 +5,5 @@ export class SignUpDto {
   name: string;
   surname: string;
   patronymic: string;
+  isConfirmed: boolean;
 }

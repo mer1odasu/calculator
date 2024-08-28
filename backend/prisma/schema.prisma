@@ -15,11 +15,17 @@ datasource db {
 
 model User {
   id    Int     @id @default(autoincrement())
-  email String  
+  email String  @unique
   name  String?
   isAdmin Boolean @default(false)
   login String @unique
   password String
   surname String
   patronymic String
+  isConfirmed Boolean 
+}
+
+model Calculator{
+  id Int @id @default(autoincrement())
+  name String
 }
