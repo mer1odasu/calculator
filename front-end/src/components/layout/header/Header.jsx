@@ -15,7 +15,7 @@ const Header = () => {
                 <div className={styles.header__row}>
                     <div className={styles.header__logo}>
                         <button onClick={() => {navigate('/')}}>
-                            Нарушениям.Нет
+                            Test
                         </button>
                     </div>
                     <Menu />

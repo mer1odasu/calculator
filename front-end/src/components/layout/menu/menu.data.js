@@ -1,13 +1,20 @@
 export const menu = [
     {
-        title: 'Подать заявление',
-        link: '/apply',
+        title: 'Калькулятор',
+        link: '/calculator',
     },
-
-    {
-        title: 'Статус заявлнения',
-        link: '/status',
+		{
+			  title: 'Справочник',
+        link: '/help',
     },
+		{
+			title: 'История',
+			link: '/history',
+		},
+		{
+			title: 'Личный кабинет',
+			link: '/profile',
+		},
 
     // {
     //     title: 'Выйти',
