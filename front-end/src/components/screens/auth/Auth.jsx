@@ -1,9 +1,13 @@
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import styles from './auth.module.scss' 
 
 
 const Auth = () => {
+
+	const navigate = useNavigate();
+
     return (
 			<main className={styles.body}>
 				<div className={styles.title}>
@@ -20,11 +24,11 @@ const Auth = () => {
 								</div>
 								<div className={styles.remember_forgot}>
 									<label><input type="checkbox"/>Запомниь меня</label>
-									<a href="#">Забыли пароль?</a>
+									<a onClick={() => {navigate('/forgot-password')}}>Забыли пароль?</a>
 								</div>
 								<button type="submit" className={styles.button}>Войти</button>
 								<div className={styles.register_link}>
-									<p>У вас нет аккаунта? <a href="#">Зарегистрироваться</a></p>
+									<p>У вас нет аккаунта? <a onClick={() => {navigate('/register')}}>Зарегистрироваться</a></p>
 								</div>
 							</form>
 					</div>

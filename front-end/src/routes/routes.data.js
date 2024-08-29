@@ -1,18 +1,15 @@
 import Home from "../components/screens/home/Home.jsx";
 import Auth from "../components/screens/auth/Auth.jsx";
 import Register from "../components/screens/auth/Register.jsx";
-import Status from "../components/screens/status/Status.jsx";
-import Apply from "../components/screens/apply/Apply.jsx";
+import Forgot from "../components/screens/auth/Forgot.jsx";
+import Calculator from "../components/screens/calculator/Calculator.jsx";
+import History from "../components/screens/history/History.jsx";
+import Profile from "../components/screens/profile/Profile.jsx";
 
 
 export const routes = [
     {
-        path: '/',
-        component: Home,
-        isAuth: false
-    },
-    {
-        path: '/auth',
+			path: '/auth',
         component: Auth,
         isAuth: false
     },
@@ -21,15 +18,30 @@ export const routes = [
 			component: Register,
 			isAuth: false
 		},
+		{
+			path: '/forgot-password',
+			component: Forgot,
+			isAuth: false
+		},
+		{
+			path: '/',
+			component: Home,
+			isAuth: false
+	},
     {
-        path: '/status',
-        component: Status,
-        isAuth: true
+        path: '/calculator',
+        component: Calculator,
+        isAuth: false
     },
     {
-        path: '/apply',
-        component: Apply,
-        isAuth: true
+        path: '/history',
+        component: History,
+        isAuth: false
     },
+		{
+			path: '/profile',
+			component: Profile,
+      isAuth: false
+		}
 
 ]

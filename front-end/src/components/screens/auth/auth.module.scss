@@ -4,7 +4,7 @@
 	box-sizing: border-box;
 }
 
-body{
+.body{
 	background: whitesmoke;
 	display: flex;
 	justify-content: center;
@@ -110,7 +110,7 @@ body{
 }
 
 .register_link p a {
-	color: grey;
+	color: black;
 	text-decoration: none;
 	font-weight: 600;
 }
