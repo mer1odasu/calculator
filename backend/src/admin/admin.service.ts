@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { User } from '@prisma/client';
+import { CalculationResult, User } from '@prisma/client';
 import { PrismaService } from 'src/prisma.service';
 import { SignUpDto } from 'src/user/dto/signUp.dto';
 import * as bcrypt from 'bcrypt';
@@ -88,5 +88,9 @@ export class AdminService {
       data: { ...dto },
     });
     return { message: 'user confirmed' };
+  }
+
+  async getAllCalculationResult(): Promise<CalculationResult[]> {
+    return await this.prisma.calculationResult.findMany({});
   }
 }

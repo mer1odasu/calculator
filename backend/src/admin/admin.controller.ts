@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { SignUpDto } from 'src/user/dto/signUp.dto';
-import { User } from '@prisma/client';
+import { CalculationResult, User } from '@prisma/client';
 import { JwtAuthGuard } from 'src/guards/jwtAuth.guard';
 import { AdminGuard } from 'src/guards/admin.guard';
 
@@ -47,5 +47,10 @@ export class AdminController {
     @Body() userData: SignUpDto,
   ): Promise<{ message }> {
     return this.adminService.confirmedUser(Number(id), userData);
+  }
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('/results')
+  async getAllCalcultionResults(): Promise<CalculationResult[]> {
+    return this.adminService.getAllCalculationResult();
   }
 }
