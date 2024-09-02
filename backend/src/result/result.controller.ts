@@ -4,7 +4,7 @@ import { CalculationResult } from '@prisma/client';
 import { JwtAuthGuard } from 'src/guards/jwtAuth.guard';
 import { writeResult } from './result.dto';
 
-@Controller('user/:userId/result')
+@Controller('user/:userId/result/')
 export class ResultController {
   constructor(private readonly resultService: ResultService) {}
 
@@ -22,5 +22,16 @@ export class ResultController {
     @Body() resultData: writeResult,
   ): Promise<{ message }> {
     return this.resultService.writeResult(Number(userId), resultData);
+  }
+
+  @Get(':calculatorId')
+  async getCalculationResultByUserIdAndCalculatorId(
+    @Param('userId') userId: number,
+    @Param('calculatorId') calculatorId: number,
+  ): Promise<CalculationResult[]> {
+    return this.resultService.getCalculationResultByUserIdAndCalculatorId(
+      Number(userId),
+      Number(calculatorId),
+    );
   }
 }

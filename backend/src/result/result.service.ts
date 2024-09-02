@@ -55,4 +55,16 @@ export class ResultService {
     });
     return { message: 'result writed' };
   }
+  async getCalculationResultByUserIdAndCalculatorId(
+    userId: number,
+    calculatorId: number,
+  ): Promise<CalculationResult[]> {
+    const results = await this.prisma.calculationResult.findMany({
+      where: {
+        userId: userId,
+        calculatorId: calculatorId,
+      },
+    });
+    return results;
+  }
 }
