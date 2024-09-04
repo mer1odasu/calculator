@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Button from "@/app/components/Button";
-import CalcInput from "./CalcInput";
 
 interface SettingsModalProps {
   isOpen?: boolean;
@@ -27,89 +26,62 @@ const CalculatorPage: React.FC<SettingsModalProps> = ({ isOpen, onClose }) => {
       measurement4: "",
       section1Input: "",
       section2Input: "",
+      section1InputExtended: "",
+      section2InputExtended: "",
     },
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-    // Рекомендуется добавить логику здесь
+    // Добавить логику здесь
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="space-y-12">
-        {/* Новый раздел: Спецификация измерений */}
+        {/* Раздел: Спецификация измерений */}
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-lg font-semibold">Спецификация измерений:</h2>
+          <h2 className="text-lg font-semibold px-6">Спецификация измерений:</h2>
           <div className="mt-6 grid grid-cols-2 gap-6">
-						<>
-            <div className="flex flex-col">
-              <label htmlFor="measurement1" className="text-sm text-gray-700">Результат измерений X</label>
-							<CalcInput
-								id="measurement1"
-								register={register}
-							/>
-            </div>
-            <div className="flex flex-col">
-              <label htmlFor="measurement2" className="text-sm text-gray-700">Абсолютная погрешность [Δ]: ±</label>
-              <CalcInput
-                id="measurement2"
-                register={register}
+            <div className="flex items-center px-6">
+              <label htmlFor="measurement1" className="text-sm text-gray-700 w-1/2">Результат измерений X</label>
+              <input
+                id="measurement1"
+                type="text"
+                {...register("measurement1", { required: "Это поле обязательно." })}
+                className="border rounded px-2 py-1 w-1/2"
               />
             </div>
-            <div className="flex flex-col">
-              <label htmlFor="measurement3" className="text-sm text-gray-700">Единица измерений</label>
-              <CalcInput
-                id="measurement3"
-                register={register}
-              />
-            </div>
-            <div className="flex flex-col">
-              <label htmlFor="measurement4" className="text-sm text-gray-700">Разрядность</label>
-              <CalcInput
-                id="measurement4"
-                register={register}
-              />
-            </div>
-						</>
-          </div>
-        </div>
 
-        {/* Новые секции с заголовками и инпутами */}
-        <div className="grid grid-cols-2 gap-6">
-          <div className="flex flex-col">
-            <h2 className="text-lg font-semibold">Расчёт стандартных неопределённостей результатов измерений по типу В:</h2>
-            <label htmlFor="section1Input" className="text-sm text-gray-700">Ub∆=</label>
-            <CalcInput
-              id="section1Input"
-              register={register}
-            />
-          </div>
-          <div className="flex flex-col">
-            <h2 className="text-lg font-semibold">Расчёт суммарной неопределённости:</h2>
-            <label htmlFor="section2Input" className="text-sm text-gray-700">Uc=</label>
-            <CalcInput
-              id="section2Input"
-              register={register}
-            />
-          </div>
-        </div>
-				<div className="grid grid-cols-2 gap-6">
-          <div className="flex flex-col">
-            <h2 className="text-lg font-semibold">Вычисление расширенной неопределённости (U):</h2>
-            <label htmlFor="section1Input" className="text-sm text-gray-700">Ub∆=</label>
-            <CalcInput
-              id="section1Input"
-              register={register}
-            />
-          </div>
-          <div className="flex flex-col">
-            <h2 className="text-lg font-semibold">Представление результатов оценивания неопределенности:</h2>
-            <label htmlFor="section2Input" className="text-sm text-gray-700">Uc=</label>
-            <CalcInput
-              id="section2Input"
-              register={register}
-            />
+            <div className="flex items-center px-6">
+              <label htmlFor="measurement2" className="text-sm text-gray-700 w-1/2">Абсолютная погрешность [Δ]: ±</label>
+              <input
+                id="measurement2"
+                type="text"
+                {...register("measurement2", { required: "Это поле обязательно." })}
+                className="border rounded px-2 py-1 w-1/2"
+              />
+            </div>
+
+            <div className="flex items-center px-6">
+              <label htmlFor="measurement3" className="text-sm text-gray-700 w-1/2">Единица измерений</label>
+              <input
+                id="measurement3"
+                type="text"
+                {...register("measurement3", { required: "Это поле обязательно." })}
+                className="border rounded px-2 py-1 w-1/2"
+              />
+            </div>
+
+            <div className="flex items-center px-6">
+              <label htmlFor="measurement4" className="text-sm text-gray-700 w-1/2">Разрядность</label>
+              <input
+                id="measurement4"
+                type="text"
+                {...register("measurement4", { required: "Это поле обязательно." })}
+                className="border rounded px-2 py-1 w-1/2"
+              />
+            </div>
           </div>
         </div>
       </div>

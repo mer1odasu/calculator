@@ -29,7 +29,7 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ data }) => {
 
   return (
     <div>
-      <div className="overflow-x-auto shadow-lg rounded-lg">
+      <div className="overflow-x-auto shadow-md">
         <table className="min-w-full border-collapse border border-gray-200 text-center rounded-lg">
           <thead>
             <tr className="bg-gray-100">

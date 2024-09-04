@@ -1,24 +1,26 @@
 'use client'
 
-import Button from "@/app/components/Button";
-import Input from "../../components/inputs/Input";
+"use client";
+
+import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
-type Variant = 'LOGIN' |'REGISTER';
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
+import Button from "../../components/Button";
+import Input from "../../components/inputs/Input";
+import LoadingModal from "../../components/modals/LoadingModal";
+
+type Variant = "LOGIN" | "REGISTER";
 
 const AuthForm = () => {
-	const [variant, setVariant] = useState<Variant>('LOGIN');
-	const [isLoading, setIsLoading] = useState(false);
-
-	const toggleVariant = useCallback(() => {
-    if (variant === "LOGIN") {
-      setVariant("REGISTER");
-    } else {
-      setVariant("LOGIN");
-    }
-  }, [variant]);
+  // const session = useSession();
+  const router = useRouter();
+  const [variant, setVariant] = useState<Variant>("LOGIN");
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -27,22 +29,62 @@ const AuthForm = () => {
   } = useForm<FieldValues>({
     defaultValues: {
       name: "",
+			surname: "",
+			patronymic: "",
       email: "",
-			login: "",
       password: "",
+			login: ""
     },
   });
 
-	const onSubmit: SubmitHandler<FieldValues> = (data) => {
+
+	fetch('https://jsonplaceholder.typicode.com/todos/1')
+	.then(response => response.json())
+	.then(json => console.log(json))
+	
+  // useEffect(() => {
+		//   if (session?.status === "authenticated") {
+			//     router.push("/calculator");
+			//   }
+  // }, [session?.status, router]);
+
+  const toggleVariant = useCallback(() => {
+    if (variant === "LOGIN") {
+      setVariant("REGISTER");
+    } else {
+      setVariant("LOGIN");
+    }
+  }, [variant]);
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
 
     if (variant === "REGISTER") {
-		// register logic here
-		}
+      axios
+        .post("/api/signup", data)
+        .then(() => signIn("credentials", data))
+        .catch(() => toast.error("Something went wrong!"))
+        .finally(() => setIsLoading(false));
+    }
 
     if (variant === "LOGIN") {
-      // login logic here
-      }
+      signIn("credentials", {
+        ...data,
+        redirect: false,
+      })
+        .then((callback) => {
+          if (callback?.error) {
+            toast.error("Invalid credentials!");
+            return;
+          }
+
+          if (callback?.ok) {
+            toast.success("logged in");
+            router.push("/conversations");
+          }
+        })
+        .finally(() => setIsLoading(false));
+    }
   };
 
 	return (
@@ -56,6 +98,18 @@ const AuthForm = () => {
 									register={register} 
 									id="name"
 									label="Имя"
+									type="text"
+									/>
+								<Input
+									register={register} 
+									id="surname"
+									label="Фамилия"
+									type="text"
+									/>
+								<Input
+									register={register} 
+									id="patronymic"
+									label="Отчество"
 									type="text"
 									/>
 								<Input

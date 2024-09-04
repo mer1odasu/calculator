@@ -11,9 +11,8 @@ interface TableProps<T> {
 }
 
 const Table = <T,>({ columns = [], data = [], roles = [] }: TableProps<T>) => {
-
-	const routes = useRouter();
-
+  const routes = useRouter();
+  
   const [selectedRows, setSelectedRows] = useState<boolean[]>(Array(data.length).fill(false));
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,10 +43,6 @@ const Table = <T,>({ columns = [], data = [], roles = [] }: TableProps<T>) => {
     console.log(`Изменить роль для строки ${index}: ${newRole}`);
   };
 
-  const handleCreate = () => {
-    console.log("Создать новый элемент");
-  };
-
   const handleDelete = () => {
     const selectedIndices = selectedRows
       .map((isSelected, index) => (isSelected ? index : -1))
@@ -56,31 +51,38 @@ const Table = <T,>({ columns = [], data = [], roles = [] }: TableProps<T>) => {
     console.log("Удалить элементы:", selectedIndices);
   };
 
+  const handleCreate = () => {
+    console.log("Создание нового элемента");
+    // Логика создания нового элемента
+  };
+
   return (
-    <div className="flex justify-center">
-      <div className="max-w-6xl w-full">
-        <div className="flex justify-between mb-4 items-center">
-          <div className="flex space-x-2">
-            <Button onClick={handleCreate}>
-              Создать
-            </Button>
-            <Button danger onClick={handleDelete} disabled={!selectedRows.some(Boolean)}>
-              Удалить
-            </Button>
-          </div>
+    <div className="flex flex-col p-4">
+      <div className="flex justify-between mb-4 items-center">
+        <div className="flex items-center space-x-2">
           <input
             type="text"
             placeholder="Поиск..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="border rounded-md px-2 py-1 w-48"
+            className="border rounded-md px-1 py-2.5 w-64 text-sm"
           />
+          <Button onClick={handleCreate}>
+            Создать
+          </Button>
+          {selectedRows.some(Boolean) && (
+            <Button danger onClick={handleDelete}>
+              Удалить
+            </Button>
+          )}
         </div>
+      </div>
 
-        <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden mx-auto">
+      <div className="overflow-x-auto shadow-md">
+        <table className="min-w-full border-collapse border border-gray-200 text-center text-sm">
           <thead>
             <tr className="bg-gray-100">
-              <th className="py-2 px-4 border-b text-center">
+              <th className="border border-gray-300 py-1 px-2">
                 <input
                   type="checkbox"
                   onChange={(event) => {
@@ -91,19 +93,19 @@ const Table = <T,>({ columns = [], data = [], roles = [] }: TableProps<T>) => {
                 />
               </th>
               {columns.map((column, index) => (
-                <th className="py-2 px-4 border-b text-center" key={index}>
+                <th className="border border-gray-300 py-1 px-2" key={index}>
                   {column}
                 </th>
               ))}
-              <th className="py-2 px-4 border-b text-center">Роль</th>
-              <th className="py-2 px-4 border-b text-center">Действия</th>
+              <th className="border border-gray-300 py-1 px-2">Роль</th>
+              <th className="border border-gray-300 py-1 px-2">Действия</th>
             </tr>
           </thead>
-          <tbody className="bg-white text-black">
+          <tbody>
             {currentRows.length > 0 ? (
               currentRows.map((row, rowIndex) => (
-                <tr className="hover:bg-gray-100" key={rowIndex}>
-                  <td className="py-2 px-4 border-b text-center">
+                <tr className="hover:bg-gray-50" key={rowIndex}>
+                  <td className="border border-gray-300 py-1 px-2">
                     <input
                       type="checkbox"
                       checked={selectedRows[(currentPage - 1) * rowsPerPage + rowIndex] || false}
@@ -111,15 +113,15 @@ const Table = <T,>({ columns = [], data = [], roles = [] }: TableProps<T>) => {
                     />
                   </td>
                   {columns.map((column, colIndex) => (
-                    <td className="py-2 px-4 border-b text-center" key={colIndex}>
+                    <td className="border border-gray-300 py-1 px-2" key={colIndex}>
                       {(row as any)[column]}
                     </td>
                   ))}
-                  <td className="py-2 px-4 border-b text-center">
+                  <td className="border border-gray-300 py-1 px-2">
                     <select
                       defaultValue={(row as any).role}
                       onChange={(e) => handleRoleChange(rowIndex, e.target.value)}
-                      className="border rounded-md bg-white text-black focus:outline-none px-1 py-1"
+                      className="border rounded-md bg-white text-black focus:outline-none px-1 py-1 text-sm"
                     >
                       {roles.map((role, index) => (
                         <option key={index} value={role}>
@@ -128,10 +130,10 @@ const Table = <T,>({ columns = [], data = [], roles = [] }: TableProps<T>) => {
                       ))}
                     </select>
                   </td>
-                  <td className="py-2 px-4 border-b text-center">
+                  <td className="border border-gray-300 py-1 px-2">
                     <button
                       onClick={() => console.log('Редактировать строку:', row)}
-                      className="text-blue-500 hover:underline focus:outline-none"
+                      className="text-blue-500 hover:underline focus:outline-none text-sm"
                     >
                       Изменить
                     </button>
@@ -147,60 +149,57 @@ const Table = <T,>({ columns = [], data = [], roles = [] }: TableProps<T>) => {
             )}
           </tbody>
         </table>
-
-        <div className="flex justify-between items-center mt-4">
-          <div className="flex items-center">
-            <label className="mr-2">Строк на странице:</label>
-            <select
-              value={rowsPerPage}
-              onChange={(e) => setRowsPerPage(Number(e.target.value))}
-              className="border rounded-md px-2 py-1"
-            >
-              {[5, 10, 20].map(value => (
-                <option key={value} value={value}>{value}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="flex items-center mx-4">
-            <button
-              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-              disabled={currentPage === 1}
-              className={`px-3 py-1 text-gray-700 hover:bg-gray-200 rounded-l-md 
-                          ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
-            >
-              &laquo; 
-            </button>
-
-            {Array.from({ length: totalPages }, (_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentPage(index + 1)}
-                className={`px-3 py-1 border border-gray-300 text-gray-700 hover:bg-gray-200 
-                            ${currentPage === index + 1 ? 'bg-gray-300' : ''}`}
-              >
-                {index + 1}
-              </button>
+      </div>
+      
+      <div className="flex justify-between items-center mt-6">
+        <div className="flex items-center">
+          <label className="mr-1 text-sm">Строк на странице:</label>
+          <select
+            value={rowsPerPage}
+            onChange={(e) => setRowsPerPage(Number(e.target.value))}
+            className="border rounded-md px-1 py-1 text-sm"
+          >
+            {[5, 10, 20].map(value => (
+              <option key={value} value={value}>{value}</option>
             ))}
+          </select>
+        </div>
 
+        <div className="flex items-center">
+          <button
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className={`px-2 py-1 text-sm ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-200'} rounded-l-md`}
+          >
+            &laquo; 
+          </button>
+
+          {Array.from({ length: totalPages }, (_, index) => (
             <button
-              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-              disabled={currentPage === totalPages}
-              className={`px-3 py-1 text-gray-700 hover:bg-gray-200 rounded-r-md 
-                          ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
+              key={index}
+              onClick={() => setCurrentPage(index + 1)}
+              className={`px-2 py-1 border border-gray-300 text-sm ${currentPage === index + 1 ? 'bg-gray-300' : ''}`}
             >
-               &raquo;
+              {index + 1}
             </button>
-          </div>
+          ))}
 
-          <div className="flex space-x-2">
-            <Button secondary onClick={() => console.log("Отмена изменения!")}>
-              Отмена
-            </Button>
-            <Button onClick={() => console.log("Данные сохранены!")}>
-              Сохранить
-            </Button>
-          </div>
+          <button
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className={`px-2 py-1 text-sm ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-200'} rounded-r-md`}
+          >
+            &raquo;
+          </button>
+        </div>
+
+        <div className="flex space-x-1">
+          <Button secondary onClick={() => console.log("Отмена изменения!")}>
+            Отмена
+          </Button>
+          <Button onClick={() => console.log("Данные сохранены!")}>
+            Сохранить
+          </Button>
         </div>
       </div>
     </div>
