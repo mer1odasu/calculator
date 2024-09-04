@@ -44,7 +44,7 @@ const Header= () => {
           </Link>
 
           <div className="flex flex-col dark:text-gray-200 text-lg">
-            <div>Cправочкник пользователей</div>
+            <div>Калькулятор </div>
             {/* <div className="text-sm font-light text-neutral-500 dark:text-gray-400">
               {statusText}
             </div> */}
