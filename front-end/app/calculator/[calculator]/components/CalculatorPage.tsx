@@ -85,6 +85,31 @@ const CalculatorPage: React.FC<SettingsModalProps> = ({ isOpen, onClose }) => {
           </div>
         </div>
       </div>
+
+			<h2 className="text-lg font-semibold px-6">Спецификация измерений:</h2>
+          <div className="mt-6 grid grid-cols-2 gap-6">
+            <div className="flex items-center px-6">
+              <label htmlFor="measurement1" className="text-sm text-gray-700 w-1/2">Результат измерений X</label>
+              <input
+                id="measurement1"
+                type="text"
+                {...register("measurement1", { required: "Это поле обязательно." })}
+                className="border rounded px-2 py-1 w-1/2"
+              />
+            </div>
+					</div>
+					<h2 className="text-lg font-semibold px-6">Спецификация измерений:</h2>
+          <div className="mt-6 grid grid-cols-2 gap-6">
+            <div className="flex items-center px-6">
+              <label htmlFor="measurement1" className="text-sm text-gray-700 w-1/2">Результат измерений X</label>
+              <input
+                id="measurement1"
+                type="text"
+                {...register("measurement1", { required: "Это поле обязательно." })}
+                className="border rounded px-2 py-1 w-1/2"
+              />
+            </div>
+					</div>
       <div className="mt-6 flex items-center justify-end gap-x-6">
         <Button disabled={isLoading} secondary onClick={onClose}>
           Отмена
