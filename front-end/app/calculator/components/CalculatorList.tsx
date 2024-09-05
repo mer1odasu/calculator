@@ -11,7 +11,7 @@ import CalculatorBox from "./CalculatorBox";
 
 
 
-const UserList = () => {
+const CalculatorList = () => {
   const [searchBy, setSearchBy] = useState("");
 
   // const filterBySearch = (user: User) => {
@@ -69,4 +69,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default CalculatorList;

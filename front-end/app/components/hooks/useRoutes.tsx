@@ -5,7 +5,6 @@ import { HiArrowLeftOnRectangle, HiUsers } from "react-icons/hi2";
 import { usePathname } from "next/navigation";
 
 import { GoHistory } from "react-icons/go";
-import { IoBookOutline } from "react-icons/io5";
 
 const useRoutes = () => {
   const pathname = usePathname();
@@ -23,12 +22,6 @@ const useRoutes = () => {
         href: "/history",
         icon: GoHistory,
         active: pathname === "/history",
-      },
-			{
-        label: "Manual",
-        href: "/manual",
-        icon: IoBookOutline,
-        active: pathname === "/manual",
       },
 			{
 				label: "Admin panel",

@@ -1,4 +1,4 @@
-import Table from '@/app/admin/[admin]/components/Table';
+import Table from '@/app/admin/users/components/Table';
 
 interface User {
   id: number;

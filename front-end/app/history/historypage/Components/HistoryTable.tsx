@@ -29,6 +29,20 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ data }) => {
 
   return (
     <div>
+			  <div className="flex justify-end ">
+          <label htmlFor="itemsPerPage" className="mr-2">Элементов на странице: </label>
+          <select
+            id="itemsPerPage"
+            value={itemsPerPage}
+            onChange={handleItemsPerPageChange}
+            className="border rounded px-2 py-1 mb-2"
+          >
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={15}>15</option>
+            <option value={20}>20</option>
+          </select>
+        </div>
       <div className="overflow-x-auto shadow-md">
         <table className="min-w-full border-collapse border border-gray-200 text-center rounded-lg">
           <thead>
@@ -59,21 +73,6 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ data }) => {
       </div>
 
       <div className="flex justify-center items-center mt-4">
-        <div className="flex items-center">
-          <label htmlFor="itemsPerPage" className="mr-2">Показать:</label>
-          <select
-            id="itemsPerPage"
-            value={itemsPerPage}
-            onChange={handleItemsPerPageChange}
-            className="border rounded px-2 py-1"
-          >
-            <option value={5}>5</option>
-            <option value={10}>10</option>
-            <option value={15}>15</option>
-            <option value={20}>20</option>
-          </select>
-        </div>
-
         <div className="flex justify-center items-center">
           <button
             onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}

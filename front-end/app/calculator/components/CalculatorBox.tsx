@@ -34,7 +34,7 @@ const CalculatorBox = () => {
         <div className="min-w-0 flex-1">
           <div className="focus:outline-none">
             <div className="flex justify-between items-center mb-1">
-              <Link className="text-sm font-medium text-gray-900 dark:text-gray-200" href={('calculator/calcpage')}>МИ П.16-2021</Link>
+              <Link className="text-md font-medium text-gray-900 dark:text-gray-200" href={('/calculator/calcpage')}>МИ П.16-2021</Link>
             </div>
           </div>
         </div>

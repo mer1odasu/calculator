@@ -1,4 +1,4 @@
-import Header from '@/app/admin/[admin]/components/Header'
+import Header from '@/app/admin/users/components/Header'
 import React from 'react'
 import CalculatorPage from './components/CalculatorPage'
 

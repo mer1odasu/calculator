@@ -8,7 +8,7 @@ import LoadingModal from "../../components/modals/LoadingModal";
 import Link from "next/link";
 
 
-const AdminBox = () => {
+const HistoryBox = () => {
 
 	const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -39,7 +39,7 @@ const AdminBox = () => {
         <div className="min-w-0 flex-1">
           <div className="focus:outline-none">
             <div className="flex justify-spacebeetween items-center mb-1">
-							<Link  className="text-lg font-medium text-gray-900 dark:text-gray-200" href={('/history/calculator1')}>МИ П.16-2021</Link>
+							<Link  className="text-lg font-medium text-gray-900 dark:text-gray-200" href={('/history/historypage')}>МИ П.16-2021</Link>
             </div>
           </div>
         </div>
@@ -48,4 +48,4 @@ const AdminBox = () => {
   );
 };
 
-export default AdminBox;
+export default HistoryBox;
