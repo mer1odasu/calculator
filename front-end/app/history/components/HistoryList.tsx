@@ -6,16 +6,6 @@ import HistoryBox from "./HistoryBox";
 const UserList = () => {
   const [searchBy, setSearchBy] = useState("");
 
-  // const filterBySearch = (user: User) => {
-  //   if (searchBy) {
-  //     const lowerCaseSearch = searchBy.toLocaleLowerCase();
-  //     const email = user.email || "";
-  //     const name = user.name || "";
-  //     return email.includes(lowerCaseSearch) || name.includes(lowerCaseSearch);
-  //   }
-  //   return true;
-  // };
-
   return (
     <aside
       className="

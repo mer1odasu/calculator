@@ -10,7 +10,7 @@ interface User {
   role: string; // Изменено на строку, если каждой записи соответствует одна роль
 }
 
-const HomePage: React.FC = () => {
+const Users: React.FC = () => {
   const roles = ["Администратор", "Менеджер", "Пользователь"];
   const columns = ['id', 'name', 'surname', 'patronymic', 'login', 'email', 'role'];
   
@@ -29,10 +29,10 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
-			<h1 className="text-2xl font-bold mb-4">История измерений</h1>
+			<h1 className="text-2xl font-bold mb-4">Список пользователей</h1>
       <Table columns={columns} data={data} roles={roles} />
     </div>
   );
 };
 
-export default HomePage;
+export default Users;

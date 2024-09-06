@@ -1,12 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import LoadingModal from "../../components/modals/LoadingModal";
 import Link from "next/link";
 
 const AdminBox = () => {
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 	
   return (

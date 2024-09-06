@@ -4,25 +4,12 @@ import { useState } from "react";
 import SearchInput from "../../components/SearchInput";
 import CalculatorBox from "./CalculatorBox";
 
-// import { User } from "@prisma/client";
-
 // import SearchInput from "./SearchInput";
-// import UserBox from "./UserBox";
 
 
 
 const CalculatorList = () => {
   const [searchBy, setSearchBy] = useState("");
-
-  // const filterBySearch = (user: User) => {
-  //   if (searchBy) {
-  //     const lowerCaseSearch = searchBy.toLocaleLowerCase();
-  //     const email = user.email || "";
-  //     const name = user.name || "";
-  //     return email.includes(lowerCaseSearch) || name.includes(lowerCaseSearch);
-  //   }
-  //   return true;
-  // };
 
   return (
     <aside

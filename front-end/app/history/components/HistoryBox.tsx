@@ -13,10 +13,6 @@ const HistoryBox = () => {
 	const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
-  // const handleNavigation = (path) => {
-  //   router.push(path);
-  // };
-
   return (
     <>
       {isLoading && <LoadingModal />}

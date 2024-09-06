@@ -1,6 +1,5 @@
 import React from 'react'
 import EmptyState from '../components/EmptyState'
-// import UsersPage from './components/UsersPage'
 
 const page = () => {
 	return (

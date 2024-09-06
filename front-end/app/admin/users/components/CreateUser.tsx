@@ -8,12 +8,12 @@ import Input from "@/app/components/inputs/Input";
 import Button from "@/app/components/Button";
 import Modal from "@/app/components/modals/Modal";
 
-interface SettingsModalProps {
+interface CreateUserModalProps {
   isOpen?: boolean;
   onClose: () => void;
 }
 
-const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose }) => {
+const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -25,6 +25,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose }) => {
 		defaultValues: {
 			login: "",
 			name: "",
+			surname: "",
+			patronymic: "",
 			mail: "",
 			password: "",
     },
@@ -104,4 +106,4 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose }) => {
   );
 };
 
-export default SettingsModal;
+export default CreateUserModal;
