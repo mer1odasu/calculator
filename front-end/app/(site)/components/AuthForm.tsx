@@ -1,7 +1,5 @@
 'use client'
 
-"use client";
-
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
@@ -37,15 +35,10 @@ const AuthForm = () => {
     },
   });
 
-
-	fetch('https://jsonplaceholder.typicode.com/todos/1')
-	.then(response => response.json())
-	.then(json => console.log(json))
-	
   // useEffect(() => {
-		//   if (session?.status === "authenticated") {
-			//     router.push("/calculator");
-			//   }
+	// 	  if (session?.status === "authenticated") {
+	// 		    router.push("/calculator");
+	// 		  }
   // }, [session?.status, router]);
 
   const toggleVariant = useCallback(() => {
@@ -80,7 +73,7 @@ const AuthForm = () => {
 
           if (callback?.ok) {
             toast.success("logged in");
-            router.push("/conversations");
+            router.push("/calculator");
           }
         })
         .finally(() => setIsLoading(false));
