@@ -1,7 +1,6 @@
 'use client'
 
 import useRoutes from "../hooks/useRoutes";
-import ProfileAvatar from "../ProfileAvatar";
 import DesktopItem from "./DesktopItem";
 import ProfileItem from "./ProfileItem";
 

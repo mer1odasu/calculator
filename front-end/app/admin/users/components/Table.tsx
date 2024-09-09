@@ -10,7 +10,7 @@ interface TableProps<T> {
   roles?: string[];
 }
 
-const Table = <T,>({ columns = [], data = [], roles = [] }: TableProps<T>) => {
+const UsersTable = <T,>({ columns = [], data = [], roles = [] }: TableProps<T>) => {
   const routes = useRouter();
   
   const [selectedRows, setSelectedRows] = useState<boolean[]>(Array(data.length).fill(false));
@@ -206,4 +206,4 @@ const Table = <T,>({ columns = [], data = [], roles = [] }: TableProps<T>) => {
   );
 };
 
-export default Table;
+export default UsersTable;

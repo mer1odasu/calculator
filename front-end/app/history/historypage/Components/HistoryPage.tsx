@@ -1,9 +1,7 @@
-// pages/index.tsx
-
 import type { NextPage } from 'next';
 import HistoryTable from './HistoryTable';
 
-const Home: NextPage = () => {
+const HistoryPage: NextPage = () => {
   const data = [
     { id: 1, date: '2024-09-01', metric: 'Показатель 1', unit: 'кг', result: 10.5, absoluteError: 0.1, representation: '10.5 кг' },
     { id: 2, date: '2024-09-02', metric: 'Показатель 2', unit: 'м', result: 5.0, absoluteError: 0.05, representation: '5.0 м' },
@@ -40,4 +38,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default HistoryPage;

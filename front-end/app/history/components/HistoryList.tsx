@@ -3,7 +3,7 @@
 import { useState } from "react";
 import HistoryBox from "./HistoryBox";
 
-const UserList = () => {
+const HistoryList = () => {
   const [searchBy, setSearchBy] = useState("");
 
   return (
@@ -43,4 +43,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default HistoryList;

@@ -43,7 +43,7 @@ const AdminBox = () => {
               className={`text-lg font-medium text-gray-900 dark:text-gray-200`} 
               href="/admin/indicators"
             >
-              Справочник индикаторов
+              Справочник показателей
             </Link>
           </div>
         </div>
